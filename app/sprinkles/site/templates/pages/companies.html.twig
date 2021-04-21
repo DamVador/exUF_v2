@@ -8,8 +8,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <div class="box-header">
+                <div class="box-header d-flex justify-content-space-between">
                     <h3 class="box-title"><i class="fa fa-cutlery fa-fw"></i> List of Companies</h3>
+                     <button type="button" class="btn btn-success">
+                        <i class="fas fa-plus-square">Create Company</i> 
+                    </button>
                 </div>
                 <div class="box-body">
                         <table class="table table-bordered">
@@ -29,7 +32,7 @@
                                 <td>
                                     <a href="{{site.uri.public}}/companies/{{company.id}}" class='btn btn-info m-r-1em'>Read</a>
                                     <a href='#' class='btn btn-primary m-r-1em'>Edit</a>
-                                    <a href='#' onclick='delete({company_name});'  class='btn btn-danger'>Delete</a>
+                                    <a href='#' onclick='delete({{company_name}});'  class='btn btn-danger'>Delete</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -38,4 +41,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block scripts_page %}
+    <!-- Include form widgets JS -->
+    {{ assets.js('js/form-widgets') | raw }}
 {% endblock %}
