@@ -1,8 +1,15 @@
 {% extends "pages/abstract/dashboard.html.twig" %}
 
 
-{% block page_title %}{{company.email}}{% endblock %}
+{% block page_title %}{{company.company_name}}{% endblock %}
 
 {% block body_matter %}
-<div>Company : </div>
+<div class="card" style="width: 36rem;">
+  <img class="card-img-top" src="{{company.logo}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{company.company_name}}</h5>
+    <p class="card-text">Contact : {{company.email}}</p>
+    <p class="card-text">Website : {{company.website}}</p>
+  </div>
+</div>
 {% endblock %}
