@@ -19,4 +19,11 @@ class CompaniesController extends SimpleController
             'companies' => $companies
         ]);
     }
+
+    public function create(Request $request, Response $response, array $args)
+    {
+
+    }
+
+    
 }
