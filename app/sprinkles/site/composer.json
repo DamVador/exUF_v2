@@ -1,0 +1,9 @@
+{
+    "name": "owlfancy/site",
+    "type": "userfrosting-sprinkle",
+    "autoload": {
+        "psr-4": {
+            "UserFrosting\\Sprinkle\\Site\\": "src/"
+        }
+    }
+}
