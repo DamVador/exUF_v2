@@ -13,7 +13,7 @@ class DefaultCompanies extends BaseSeed
     public function run()
     {
         foreach ($this->companies() as $company) {
-            $company = new Companies($company);
+            $company = new Company($company);
             $company->save();
         }
     }
@@ -34,8 +34,8 @@ class DefaultCompanies extends BaseSeed
                 'website' => 'https://www.samsung.com/'
             ],
             [
-                'company_name' => 'Apple',
-                'email' => 'apple@cider.cake',
+                'company_name' => 'Alcatel',
+                'email' => 'Ala@tel.net',
                 'logo' => 'https://photos.fliarbi.com/5eed1e16aa40b-logo.png',
                 'website' => 'https://www.alcatel-home.com/'
             ]
