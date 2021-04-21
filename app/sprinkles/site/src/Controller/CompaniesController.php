@@ -20,10 +20,28 @@ class CompaniesController extends SimpleController
         ]);
     }
 
-    public function create(Request $request, Response $response, array $args)
+    public function showCompany(Request $request, Response $response, $args)
     {
-
+        $company = Company::all();
+        return $this->ci->view->render($response, 'pages/companies.html.twig', [
+            'companies' => $companies
+        ]);
     }
 
-    
+    public function create(Request $request, Response $response, $args)
+    {
+       
+    }
+
+    public function delete(Request $request, Response $response, $args)
+    {
+       
+    }
+
+    public function update(Request $request, Response $response, $args)
+    {
+       
+    }
+
+
 }
