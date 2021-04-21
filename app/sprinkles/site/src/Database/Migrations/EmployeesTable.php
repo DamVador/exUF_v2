@@ -13,7 +13,7 @@ class EmployeesTable extends Migration
         if (!$this->schema->hasTable('employees')) {
             $this->schema->create('employees', function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('first_name');
+                $table->string('first_name');
                 $table->string('last_name');
                 $table->string('email')->unique();
                 $table->string('phone_number');
