@@ -10,4 +10,10 @@ $app->group('/companies', function () {
 
     $this->get('/{company_name}', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:showCompany');
 
-})->add('authGuard')->add(new NoCache());;
+    $this->delete('/{company_name}', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:delete');
+
+    $this->post('', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:create');
+
+    $this->put('/{company_name}', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:update');
+
+})->add('authGuard');
