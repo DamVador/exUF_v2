@@ -10,8 +10,6 @@ use UserFrosting\Support\Exception\ForbiddenException;
 use UserFrosting\Sprinkle\Site\Database\Models\Company;
 use UserFrosting\Sprinkle\Core\Facades\Debug;
 use Slim\Route;
-// use Slim\App;
-// use Slim\Http\Environment;
 
 class CompaniesController extends SimpleController
 {
@@ -54,9 +52,29 @@ class CompaniesController extends SimpleController
         return $response->withRedirect('/companies');
     }
 
+    public function edit(Request $request, Response $response, $args)
+    {
+        $company = Company::find($args['company_name']);
+        return $this->ci->view->render($response, 'pages/edit_company.html.twig', [
+            'company' => $company
+        ]);
+    }
+
     public function update(Request $request, Response $response, $args)
     {
-       
+        $company_name = $request->getParsedBody()['company_name'];
+        $company_email = $request->getParsedBody()['email'];
+        $company_logo = $request->getParsedBody()['logo'];
+        $company_website = $request->getParsedBody()['website'];
+        $id = $args['company_name'];
+       // Debug::debug($request->getParsedBody());
+        Debug::debug($args['company_name']);
+        Company::where('id', $id)->update(['company_name' => $company_name]);
+        Company::where('id', $id)->update(['email' => $company_email]);
+        Company::where('id', $id)->update(['logo' => $company_logo]);
+        Company::where('id', $id)->update(['website' => $company_website]);
+
+        return $response->withRedirect('/companies');
     }
 
 
