@@ -11,7 +11,7 @@
                 <div class="box-header">
                     <h3 class="box-title"><i class="fa fa-cutlery fa-fw"></i> List of Companies</h3>
                     <div class="text-right">
-                        <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">
+                        <a href="" class="btn btn-success btn-rounded" data-toggle="modal" data-target="#modalLoginForm">
                             <i class="fas fa-plus-square"> Create Company</i>
                         </a>
                     </div>              
@@ -33,7 +33,7 @@
                                 <td>{{company.website}}</td>
                                 <td>
                                     <a href="{{site.uri.public}}/companies/{{company.id}}" class='btn btn-info m-r-1em'>Read</a>
-                                    <a href='#' class='btn btn-primary m-r-1em'>Edit</a>
+                                    <a href="{{site.uri.public}}/companies/{{company.id}}/edit" class='btn btn-primary m-r-1em'>Edit</a>
                                     <a href="{{site.uri.public}}/companies/delete/{{company.id}}"  class='btn btn-danger'>Delete</a>
                                 </td>
                             </tr>
