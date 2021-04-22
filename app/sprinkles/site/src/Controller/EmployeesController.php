@@ -18,11 +18,14 @@ class EmployeesController extends SimpleController
 {
     public function pageList(Request $request, Response $response, $args)
     {   
-        $employees = Employee::where('company_id', $args[company_name]);
+        $employees = Employee::all()->where('company_id', $args[company_name]);
+        //$employees = Employee::findBy('select * from employees where company_id = :id', ['company_id' => $args[company_name]]);
+        $company = Company::find($args[company_name]);
         Debug::debug('////employees////');
-        Debug::debug($args[company_name]);
+        Debug::debug($employees);
         return $this->ci->view->render($response, 'pages/employees.html.twig', [
-            'employees' => $employees
+            'employees' => $employees,
+            'company' => $company
         ]);
     }
 
