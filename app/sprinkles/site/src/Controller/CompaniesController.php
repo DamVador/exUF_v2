@@ -10,6 +10,8 @@ use UserFrosting\Support\Exception\ForbiddenException;
 use UserFrosting\Sprinkle\Site\Database\Models\Company;
 use UserFrosting\Sprinkle\Core\Facades\Debug;
 use Slim\Route;
+// use Slim\App;
+// use Slim\Http\Environment;
 
 class CompaniesController extends SimpleController
 {
@@ -32,9 +34,16 @@ class CompaniesController extends SimpleController
         ]);
     }
 
-    public function create(Request $request, Response $response, $args)
-    {
-       
+    public function createCompany(Request $request, Response $response, $args = [])
+    {   
+        //Debug::debug($request->getParsedBody());
+        $company_name = $request->getParsedBody()['company_name'];
+        $company_email = $request->getParsedBody()['email'];
+        $company_logo = $request->getParsedBody()['logo'];
+        $company_website = $request->getParsedBody()['website'];
+        $company = new Company(['company_name'=>$company_name,'email'=>'s','logo'=>'t','website'=>'er']);
+        $company->save();
+        return  $response->withRedirect('/companies');
     }
 
     public function deleteCompany(Request $request, Response $response, $args)
