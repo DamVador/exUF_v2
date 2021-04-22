@@ -10,6 +10,7 @@ use UserFrosting\Support\Exception\ForbiddenException;
 use UserFrosting\Sprinkle\Site\Database\Models\Company;
 use UserFrosting\Sprinkle\Core\Facades\Debug;
 use Slim\Route;
+use  \UserFrosting\Sprinkle\Core\Alert\AlertStream;
 
 class CompaniesController extends SimpleController
 {
@@ -41,6 +42,8 @@ class CompaniesController extends SimpleController
         $company_website = $request->getParsedBody()['website'];
         $company = new Company(['company_name'=>$company_name,'email'=>$company_email,'logo'=>$company_logo,'website'=>$company_website]);
         $company->save();
+        $this->ci->alerts->addMessage('success', 'The company has been created', [
+            ]);
         return  $response->withRedirect('/companies');
     }
 
@@ -49,6 +52,8 @@ class CompaniesController extends SimpleController
         $company = Company::find($args['company_name']);
        // Debug::debug($company);
         $company->delete();
+        $this->ci->alerts->addMessage('success', 'The company has been deleted', [
+        ]);
         return $response->withRedirect('/companies');
     }
 
@@ -73,7 +78,8 @@ class CompaniesController extends SimpleController
         Company::where('id', $id)->update(['email' => $company_email]);
         Company::where('id', $id)->update(['logo' => $company_logo]);
         Company::where('id', $id)->update(['website' => $company_website]);
-
+        $this->ci->alerts->addMessage('success', 'Datas have been updated', [
+            ]);
         return $response->withRedirect('/companies');
     }
 
