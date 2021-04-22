@@ -36,12 +36,14 @@ class CompaniesController extends SimpleController
        
     }
 
-    public function delete(Request $request, Response $response, $args)
+    public function deleteCompany(Request $request, Response $response, $args)
     {
         $company = Company::find($args['company_name']);
-        //Debug::debug($company);
+        Debug::debug($company);
         $company->delete();
-        return redirect()->route('/companies');
+        return $this->ci->view->render($response, 'pages/companies.html.twig', [
+
+        ]);
 
     }
 
