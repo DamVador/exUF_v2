@@ -12,7 +12,7 @@
                      <h3 class="box-title"><i class="fa fa-cutlery fa-fw"></i> List of Employees</h3>
                     <div class="text-right">
                         <a href="" class="btn btn-success btn-rounded" data-toggle="modal" data-target="#modalLoginForm">
-                            <i class="fas fa-plus-square"> Create Employees</i>
+                            <i class="fas fa-plus-square"> Add Employee</i>
                         </a>
                     </div>              
                 </div>
@@ -40,6 +40,51 @@
                         {% endfor %}
                     </table>
                 </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Create</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <form action="{{site.uri.public}}/companies/employees" method="post" >
+                        {% include "forms/csrf.html.twig" %}
+                        <div class="form-group has-feedback">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name="first_name">
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name="last_name">
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Email</label>
+                            <input type="text" class="form-control" name="email">
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Phone number</label>
+                            <input type="text" class="form-control" name="phone_number">
+                        </div>
+                        <div class="form-group has-feedback d-none">
+                            <input type="hidden" class="form-control" name="company_id" value="{{company.id}}>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-xs-8">
+                                </div>
+                                <div class="col-xs-4">
+                                <button type="submit" class="btn btn-primary btn-block btn-flat">Create Employee</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>  
             </div>
         </div>
     </div>
