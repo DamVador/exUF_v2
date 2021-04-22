@@ -39,7 +39,7 @@ class CompaniesController extends SimpleController
         $company_email = $request->getParsedBody()['email'];
         $company_logo = $request->getParsedBody()['logo'];
         $company_website = $request->getParsedBody()['website'];
-        $company = new Company(['company_name'=>$company_name,'email'=>'s','logo'=>'t','website'=>'er']);
+        $company = new Company(['company_name'=>$company_name,'email'=>$company_email,'logo'=>$company_logo,'website'=>$company_website]);
         $company->save();
         return  $response->withRedirect('/companies');
     }
