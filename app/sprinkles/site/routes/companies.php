@@ -10,10 +10,11 @@ $app->group('/companies', function () {
 
     $this->get('/{company_name}', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:showCompany');
 
-    $this->delete('/delete/{company_name}', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:delete');
+    $this->get('/delete/{company_name}', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:deleteCompany');
 
     $this->post('', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:create');
 
     $this->put('/{company_name}', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:update');
 
 })->add('authGuard');
+
