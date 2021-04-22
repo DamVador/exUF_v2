@@ -14,7 +14,9 @@ $app->group('/companies', function () {
 
     $this->post('', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:createCompany');
     
-    $this->put('/{company_name}', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:update');
+    $this->get('/{company_name}/edit', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:edit');
+
+    $this->post('/{company_name}/update', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:update');
 
 })->add('authGuard');
 
