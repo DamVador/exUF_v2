@@ -18,5 +18,8 @@ $app->group('/companies', function () {
 
     $this->post('/{company_name}/update', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:update');
 
+    $this->get('/{company_name}/employees', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:pageList');
+
+
 })->add('authGuard');
 
