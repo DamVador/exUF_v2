@@ -9,6 +9,7 @@ use UserFrosting\Sprinkle\Core\Controller\SimpleController;
 use UserFrosting\Support\Exception\ForbiddenException;
 use UserFrosting\Sprinkle\Site\Database\Models\Company;
 use UserFrosting\Sprinkle\Core\Facades\Debug;
+use Slim\Route;
 
 class CompaniesController extends SimpleController
 {
@@ -39,12 +40,9 @@ class CompaniesController extends SimpleController
     public function deleteCompany(Request $request, Response $response, $args)
     {
         $company = Company::find($args['company_name']);
-        Debug::debug($company);
+       // Debug::debug($company);
         $company->delete();
-        return $this->ci->view->render($response, 'pages/companies.html.twig', [
-
-        ]);
-
+        return $response->withRedirect('/companies');
     }
 
     public function update(Request $request, Response $response, $args)
