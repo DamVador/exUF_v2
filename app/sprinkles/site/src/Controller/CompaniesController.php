@@ -17,7 +17,6 @@ class CompaniesController extends SimpleController
     public function pageList(Request $request, Response $response, $args)
     {   
         $companies = Company::all();
-       // Debug::debug($companies);
         return $this->ci->view->render($response, 'pages/companies.html.twig', [
             'companies' => $companies
         ]);
@@ -26,8 +25,6 @@ class CompaniesController extends SimpleController
     public function showCompany(Request $request, Response $response, $args)
     {
         $company = Company::find($args['company_name']);
-        // $company = Company::where('id', $args['company_name'])->get();
-        // Debug::debug($company);
         return $this->ci->view->render($response, 'pages/company.html.twig', [
             'company' => $company
         ]);
@@ -35,25 +32,21 @@ class CompaniesController extends SimpleController
 
     public function createCompany(Request $request, Response $response, $args = [])
     {   
-        //Debug::debug($request->getParsedBody());
         $company_name = $request->getParsedBody()['company_name'];
         $company_email = $request->getParsedBody()['email'];
         $company_logo = $request->getParsedBody()['logo'];
         $company_website = $request->getParsedBody()['website'];
         $company = new Company(['company_name'=>$company_name,'email'=>$company_email,'logo'=>$company_logo,'website'=>$company_website]);
         $company->save();
-        $this->ci->alerts->addMessage('success', 'The company has been created', [
-            ]);
+        $this->ci->alerts->addMessage('success', 'The company has been created', []);
         return  $response->withRedirect('/companies');
     }
 
     public function deleteCompany(Request $request, Response $response, $args)
     {
         $company = Company::find($args['company_name']);
-       // Debug::debug($company);
         $company->delete();
-        $this->ci->alerts->addMessage('success', 'The company has been deleted', [
-        ]);
+        $this->ci->alerts->addMessage('success', 'The company has been deleted', []);
         return $response->withRedirect('/companies');
     }
 
@@ -72,14 +65,12 @@ class CompaniesController extends SimpleController
         $company_logo = $request->getParsedBody()['logo'];
         $company_website = $request->getParsedBody()['website'];
         $id = $args['company_name'];
-       // Debug::debug($request->getParsedBody());
         Debug::debug($args['company_name']);
         Company::where('id', $id)->update(['company_name' => $company_name]);
         Company::where('id', $id)->update(['email' => $company_email]);
         Company::where('id', $id)->update(['logo' => $company_logo]);
         Company::where('id', $id)->update(['website' => $company_website]);
-        $this->ci->alerts->addMessage('success', 'Datas have been updated', [
-            ]);
+        $this->ci->alerts->addMessage('success', 'Datas have been updated', []);
         return $response->withRedirect('/companies');
     }
 
