@@ -27,9 +27,14 @@ class EmployeesController extends SimpleController
         ]);
     }
 
-    public function showCompany(Request $request, Response $response, $args)
+    public function showEmployee(Request $request, Response $response, $args)
     {
-       
+        $employee = Employee::find($args['employee_id']);
+        $company = Company::find($args['company_name']);
+        return $this->ci->view->render($response, 'pages/employee.html.twig', [
+            'employee' => $employee,
+            'company' => $company
+        ]);
     }
 
     public function createEmployee(Request $request, Response $response, $args = [])
