@@ -24,5 +24,7 @@ $app->group('/companies', function () {
 
     $this->get('/{company_name}/employee/{employee_id}/delete', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:deleteEmployee');
 
+    $this->get('/{company_name}/employee/{employee_id}/edit', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:edit');
+
 })->add('authGuard');
 
