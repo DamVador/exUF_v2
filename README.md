@@ -51,3 +51,6 @@ run migrations and seed:
   php bakery migrate
   php bakery seed DefaultCompanies DefaultEmployees
 ```
+Account to connect : 
+* email : dnr94110@gmail.com  
+* password : azertyui
