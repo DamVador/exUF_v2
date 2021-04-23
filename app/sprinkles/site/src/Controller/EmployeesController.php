@@ -47,9 +47,13 @@ class EmployeesController extends SimpleController
          return  $response->withRedirect('/companies/' . $id . '/employees');
     }
 
-    public function deleteCompany(Request $request, Response $response, $args)
+    public function deleteEmployee(Request $request, Response $response, $args)
     {
-       
+        $employee = Employee::find($args['employee_id']);
+        $employee->delete();
+        $this->ci->alerts->addMessage('success', 'The company has been deleted', [
+        ]);
+        return $response->withRedirect('/companies/'.$args[company_name].'/employees');
     }
 
     public function edit(Request $request, Response $response, $args)
