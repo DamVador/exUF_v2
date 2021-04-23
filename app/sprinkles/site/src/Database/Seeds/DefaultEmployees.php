@@ -15,32 +15,30 @@ class DefaultEmployees extends BaseSeed
      */
     public function run()
     {
+        $count = Company::count();
+        $faker = Faker::getGenerator();
 
-        //$this->validateMigrationDependencies('\UserFrosting\Sprinkle\Account\Database\Migrations\CompaniesTable');
-       // $this->validateMigrationDependencies('\UserFrosting\Sprinkle\Account\Database\Migrations\EmployeesTable');
-        //$this->validateMigrationDependencies('\UserFrosting\Sprinkle\Account\Database\Migrations\AddCompanyIdEmployeesTable');
-
+        Employee::truncate();
         foreach ($this->employees() as $employee) {
             $employee = new Employee($employee);
             $employee->save();
         }
 		
-            // $employee = new Employee([
-			// 	'first_name' 	=> Faker::firstNameMale(),
-			// 	'last_name' 		=> Faker::firstNameMale(),
-            //     'email'   =>   Faker::unique()->email(),
-            //     'phone_number' => "0987654",
-            //     'company_id' => rand(1, 3)
-			// ]);
-            // $employee->save();
-		
+        foreach(range(1, 20) as $index) {
+            $employee = new Employee([
+				'first_name' 	=> $faker->firstNameMale(),
+				'last_name' 		=> $faker->firstNameMale(),
+                'email'   =>   $faker->unique()->email(),
+                'phone_number' => $faker->phoneNumber(),
+                'company_id' => rand(1, $count)
+			]);
+            $employee->save();
+        }
     }
 
     protected function employees()
     {
-        $count = Company::count();
         Debug::debug($count);
-
         return [
             [
                 'first_name' => 'Homer',
