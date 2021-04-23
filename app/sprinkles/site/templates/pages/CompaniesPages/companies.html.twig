@@ -17,19 +17,19 @@
                     </div>              
                 </div>
                 <div class="box-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="sortTable">
                         <tr>
+                            <th>Logo</th>
                             <th>Name</th>
-                            <th>email</th>
-                            <th>logo</th>
-                            <th>website</th>
+                            <th>Email</th>
+                            <th>Website</th>
                             <th>Actions</th>
                         </tr>
                         {% for company in companies %}
                             <tr>
+                                <td><img src={{company.logo}} alt="logo" width="100" height="100"></td>
                                 <td>{{company.company_name}}</td>
                                 <td>{{company.email}}</td>
-                                <td><img src={{company.logo}} alt="logo" width="100" height="100"></td>
                                 <td><a href="{{company.website}}">{{company.website}}</a></td>
                                 <td>
                                     <a href="{{site.uri.public}}/companies/{{company.id}}/employees" class='btn btn-info m-r-1em'>Employees</a>
@@ -87,9 +87,12 @@
         </div>
     </div>
 
-
+<script>
+$('#sortTable').DataTable();
+</script>
 {% endblock %}
 {% block scripts_page %}
     <!-- Include form widgets JS -->
     {{ assets.js('js/form-widgets') | raw }}
+
 {% endblock %}
