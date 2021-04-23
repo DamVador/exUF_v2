@@ -51,7 +51,7 @@ class EmployeesController extends SimpleController
     {
         $employee = Employee::find($args['employee_id']);
         $employee->delete();
-        $this->ci->alerts->addMessage('success', 'The company has been deleted', [
+        $this->ci->alerts->addMessage('success', 'The employee has been deleted', [
         ]);
         return $response->withRedirect('/companies/'.$args[company_name].'/employees');
     }
