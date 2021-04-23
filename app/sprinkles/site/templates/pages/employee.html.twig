@@ -13,7 +13,10 @@
         <h1 class="display-4 mx-3">{{employee.first_name}} {{employee.last_name}}</h1>
         <p class="lead">Feel free to contact this employee by email : <span class="text-primary">{{employee.email}}</span></p>
         <p>Also reachable by phone on the following number : <span class="text-primary">{{employee.phone_number}}</span> </p>
-    </div>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{site.uri.public}}/companies/{{company.id}}/employee/{{employee.id}}/edit" role="button">Edit profile</a>
+        </p>
+        </div>
     <div class="col-4"></div>
   </div>
 </div>
