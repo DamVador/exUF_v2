@@ -1,17 +1,13 @@
-# Exercise UserFrosting 
-Two Tables --> and Employees
- Companies
- 
-| Company name | email | logo | website | 
-| ------ |:-------:|:-----:|:--------:|:-----:|
+# Exercise with UserFrosting 
 
-Employees
+### Two Tables
+ Companies -> | Company name | email | logo | website | 
 
-| First name | Last name | Email | Phone number | 
-| ------ |:-------:|:-----:|:--------:|:-----:|
+Employees -> | First name | Last name | Email | Phone number | 
 
-CRUD for both 
-Prevent users to register
+
+### CRUD for both 
+### Prevent users to register
 
 ## Few screenshots
 
