@@ -53,7 +53,7 @@
                     </button>
                 </div>
                 <div class="modal-body mx-3">
-                    <form action="{{site.uri.public}}/companies/employees" method="post" >
+                    <form action="{{site.uri.public}}/companies/{{company.id}}/employees" method="post" >
                         {% include "forms/csrf.html.twig" %}
                         <div class="form-group has-feedback">
                             <label>First Name</label>
