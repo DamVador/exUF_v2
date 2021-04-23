@@ -17,7 +17,7 @@ class CompaniesController extends SimpleController
     public function pageList(Request $request, Response $response, $args)
     {   
         $companies = Company::all();
-        return $this->ci->view->render($response, 'pages/companies.html.twig', [
+        return $this->ci->view->render($response, 'pages/CompaniesPages/companies.html.twig', [
             'companies' => $companies
         ]);
     }
@@ -25,7 +25,7 @@ class CompaniesController extends SimpleController
     public function showCompany(Request $request, Response $response, $args)
     {
         $company = Company::find($args['company_name']);
-        return $this->ci->view->render($response, 'pages/company.html.twig', [
+        return $this->ci->view->render($response, 'pages/CompaniesPages/company.html.twig', [
             'company' => $company
         ]);
     }
@@ -53,7 +53,7 @@ class CompaniesController extends SimpleController
     public function edit(Request $request, Response $response, $args)
     {
         $company = Company::find($args['company_name']);
-        return $this->ci->view->render($response, 'pages/edit_company.html.twig', [
+        return $this->ci->view->render($response, 'pages/CompaniesPages/edit_company.html.twig', [
             'company' => $company
         ]);
     }

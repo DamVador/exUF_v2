@@ -21,7 +21,7 @@ class EmployeesController extends SimpleController
         $employees = Employee::all()->where('company_id', $args[company_name]);
         $company = Company::find($args[company_name]);
         //Debug::debug($employees);
-        return $this->ci->view->render($response, 'pages/employees.html.twig', [
+        return $this->ci->view->render($response, 'pages/EmployeesPages/employees.html.twig', [
             'employees' => $employees,
             'company' => $company
         ]);
@@ -31,7 +31,7 @@ class EmployeesController extends SimpleController
     {
         $employee = Employee::find($args['employee_id']);
         $company = Company::find($args['company_name']);
-        return $this->ci->view->render($response, 'pages/employee.html.twig', [
+        return $this->ci->view->render($response, 'pages/EmployeesPages/employee.html.twig', [
             'employee' => $employee,
             'company' => $company
         ]);
@@ -65,7 +65,7 @@ class EmployeesController extends SimpleController
     {
         $employee = Employee::find($args['employee_id']);
         $company = Company::find($args['company_name']);
-        return $this->ci->view->render($response, 'pages/edit_employee.html.twig', [
+        return $this->ci->view->render($response, 'pages/EmployeesPages/edit_employee.html.twig', [
             'employee' => $employee,
             'company' => $company
         ]);
