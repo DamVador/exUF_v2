@@ -58,7 +58,10 @@ class EmployeesController extends SimpleController
 
     public function edit(Request $request, Response $response, $args)
     {
-       
+        $employee = Employee::find($args['employee_id']);
+        return $this->ci->view->render($response, 'pages/edit_employee.html.twig', [
+            'employee' => $employee
+        ]);
     }
 
     public function update(Request $request, Response $response, $args)
