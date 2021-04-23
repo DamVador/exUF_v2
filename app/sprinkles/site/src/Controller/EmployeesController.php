@@ -19,10 +19,8 @@ class EmployeesController extends SimpleController
     public function pageList(Request $request, Response $response, $args)
     {   
         $employees = Employee::all()->where('company_id', $args[company_name]);
-        //$employees = Employee::findBy('select * from employees where company_id = :id', ['company_id' => $args[company_name]]);
         $company = Company::find($args[company_name]);
-        Debug::debug('////employees////');
-        Debug::debug($employees);
+        //Debug::debug($employees);
         return $this->ci->view->render($response, 'pages/employees.html.twig', [
             'employees' => $employees,
             'company' => $company
@@ -34,9 +32,19 @@ class EmployeesController extends SimpleController
        
     }
 
-    public function createCompany(Request $request, Response $response, $args = [])
+    public function createEmployee(Request $request, Response $response, $args = [])
     {   
-        
+         $first_name = $request->getParsedBody()['first_name'];
+         $last_name = $request->getParsedBody()['last_name'];
+         $email = $request->getParsedBody()['email'];
+         $phone_number = $request->getParsedBody()['phone_number'];
+         $company_id = $request->getParsedBody()['company_id'];
+         $id = explode(">", $company_id)[0];//company_id doesnt return just id, it returns all a string from which we can extract id
+         $employee = new Employee(['first_name'=>$first_name,'last_name'=>$last_name,'email'=>$email,'phone_number'=>$phone_number,'company_id'=>$id]);
+         $employee->save();
+         $this->ci->alerts->addMessage('success', 'The employee has been added', [
+             ]);
+         return  $response->withRedirect('/companies/' . $id . '/employees');
     }
 
     public function deleteCompany(Request $request, Response $response, $args)
