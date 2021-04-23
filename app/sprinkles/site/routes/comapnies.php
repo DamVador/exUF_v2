@@ -18,17 +18,17 @@ $app->group('/companies', function () {
 
     $this->post('/{company_name}/update', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:update');
 
-    $this->get('/{company_name}/employees', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:pageList');
+    // $this->get('/{company_name}/employees', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:pageList');
 
-    $this->post('/{company_name}/employees', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:createEmployee');
+    // $this->post('/{company_name}/employees', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:createEmployee');
 
-    $this->get('/{company_name}/employee/{employee_id}/delete', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:deleteEmployee');
+    // $this->get('/{company_name}/employee/{employee_id}/delete', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:deleteEmployee');
 
-    $this->get('/{company_name}/employee/{employee_id}/edit', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:edit');
+    // $this->get('/{company_name}/employee/{employee_id}/edit', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:edit');
 
-    $this->post('/{company_name}/employee/{employee_id}/update', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:update');
+    // $this->post('/{company_name}/employee/{employee_id}/update', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:update');
 
-    $this->get('/{company_name}/employee/{employee_id}', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:showEmployee');
+    // $this->get('/{company_name}/employee/{employee_id}', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:showEmployee');
 
 })->add('authGuard');
 
