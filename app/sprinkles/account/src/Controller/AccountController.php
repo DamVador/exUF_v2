@@ -539,22 +539,22 @@ class AccountController extends SimpleController
             $fields['hidden'][] = 'locale';
         }
         //Comment this part to allow to register
-        $this->ci->alerts->addMessage('danger', 'It is not possible to register for the moment.', []);
-        return $response->withRedirect('/');
-        
+        // $this->ci->alerts->addMessage('danger', 'It is not possible to register for the moment.', []);
+        // return $response->withRedirect('/');
+
         //Uncomment this part to allow to register
-        // return $this->ci->view->render($response, 'pages/register.html.twig', [
-        //     'page' => [
-        //         'validators' => [
-        //             'register' => $validatorRegister->rules('json', false),
-        //         ],
-        //     ],
-        //     'fields'  => $fields,
-        //     'locales' => [
-        //         'available' => $locales,
-        //         'current'   => $currentLocale,
-        //     ],
-        // ]);
+        return $this->ci->view->render($response, 'pages/register.html.twig', [
+            'page' => [
+                'validators' => [
+                    'register' => $validatorRegister->rules('json', false),
+                ],
+            ],
+            'fields'  => $fields,
+            'locales' => [
+                'available' => $locales,
+                'current'   => $currentLocale,
+            ],
+        ]);
     }
 
     /**
