@@ -32,7 +32,7 @@
                                 <td>{{employee.email}}</td>
                                 <td>{{employee.phone_number}}</td>
                                 <td>
-                                    <a href="" class='btn btn-info m-r-1em'>Read</a>
+                                    <a href="{{site.uri.public}}/companies/{{company.id}}/employee/{{employee.id}}" class='btn btn-info m-r-1em'>Read</a>
                                     <a href="{{site.uri.public}}/companies/{{company.id}}/employee/{{employee.id}}/edit" class='btn btn-primary m-r-1em'>Edit</a>
                                     <a href="{{site.uri.public}}/companies/{{company.id}}/employee/{{employee.id}}/delete"  class='btn btn-danger'>Delete</a>
                                 </td>
