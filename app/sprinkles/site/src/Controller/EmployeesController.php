@@ -59,14 +59,28 @@ class EmployeesController extends SimpleController
     public function edit(Request $request, Response $response, $args)
     {
         $employee = Employee::find($args['employee_id']);
+        $company = Company::find($args['company_name']);
         return $this->ci->view->render($response, 'pages/edit_employee.html.twig', [
-            'employee' => $employee
+            'employee' => $employee,
+            'company' => $company
         ]);
     }
 
     public function update(Request $request, Response $response, $args)
     {
-        
+        $first_name = $request->getParsedBody()['first_name'];
+        $last_name = $request->getParsedBody()['last_name'];
+        $email = $request->getParsedBody()['email'];
+        $phone_number = $request->getParsedBody()['phone_number'];
+        $company_id = $args['company_name'];
+        $id = $args['employee_id'];
+        Employee::where('id', $id)->update(['first_name' => $first_name]);
+        Employee::where('id', $id)->update(['last_name' => $last_name]);
+        Employee::where('id', $id)->update(['email' => $email]);
+        Employee::where('id', $id)->update(['phone_number' => $phone_number]);
+        $this->ci->alerts->addMessage('success', "Employee's informations updated", [
+            ]);
+        return $response->withRedirect('/companies/'.$company_id.'/employees');
     }
 
 
