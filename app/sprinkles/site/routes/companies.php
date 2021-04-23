@@ -20,6 +20,8 @@ $app->group('/companies', function () {
 
     $this->get('/{company_name}/employees', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:pageList');
 
+    $this->post('/{company_name}/employees', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:createEmployee');
+
 
 })->add('authGuard');
 
