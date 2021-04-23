@@ -40,11 +40,14 @@ Employees -> | First name | Last name | Email | Phone number |
 Clone the repositery 
 
 In terminal enter the following command lines:
+```
   docker-compose build --no-cache
   docker-compose up -d
   docker-compose exec app sh -c "composer update"
   docker-compose exec app sh -c "php bakery bake"
-
+```
 run migrations and seed:
+```
   php bakery migrate
   php bakery seed DefaultCompanies DefaultEmployees
+```
