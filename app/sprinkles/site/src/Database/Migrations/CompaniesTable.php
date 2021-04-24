@@ -16,7 +16,7 @@ class CompaniesTable extends Migration
                 $table->string('company_name', 30)->unique();
                 $table->string('email')->required();
                 $table->string('logo');
-                $table->string('website')->required();
+                $table->string('website')->min(5);
                 $table->timestamps();
 
                 $table->engine = 'InnoDB';

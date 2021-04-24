@@ -33,7 +33,17 @@ class CompaniesController extends SimpleController
     public function createCompany(Request $request, Response $response, $args = [])
     {   
         $company_name = $request->getParsedBody()['company_name'];
+        $name_length=strlen($company_name);
+        if($name_length<3){
+             $this->ci->alerts->addMessage('danger', 'Company Name is too short, minimum 3 characters', []);
+             return $response->withRedirect('/companies');
+        }
         $company_email = $request->getParsedBody()['email'];
+        $email_length=strlen($company_email);
+        if($email_length<3 && strpos($company_email, '@') === false){
+             $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
+             return $response->withRedirect('/companies');
+        }
         $company_logo = $request->getParsedBody()['logo'];
         $company_website = $request->getParsedBody()['website'];
         $company = new Company(['company_name'=>$company_name,'email'=>$company_email,'logo'=>$company_logo,'website'=>$company_website]);
@@ -60,8 +70,20 @@ class CompaniesController extends SimpleController
 
     public function update(Request $request, Response $response, $args)
     {
+       
         $company_name = $request->getParsedBody()['company_name'];
+        $name_length=strlen($company_name);
+        if($name_length<3){
+             $this->ci->alerts->addMessage('danger', 'Company Name is too short, minimum 3 letters', []);
+             return $response->withRedirect('/companies/'.$args['company_name'].'/edit');
+        }
         $company_email = $request->getParsedBody()['email'];
+
+        $email_length=strlen($company_email);
+        if($email_length<3 && strpos($company_email, '@') === false){
+             $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
+             return $response->withRedirect('/companies/'.$args['company_name'].'/edit');
+        }
         $company_logo = $request->getParsedBody()['logo'];
         $company_website = $request->getParsedBody()['website'];
         $id = $args['company_name'];
