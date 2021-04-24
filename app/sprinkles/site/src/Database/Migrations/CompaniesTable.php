@@ -5,6 +5,7 @@ namespace UserFrosting\Sprinkle\Site\Database\Migrations;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\Builder;
 use UserFrosting\Sprinkle\Core\Database\Migration;
+use UserFrosting\Sprinkle\Core\Facades\Seeder;
 
 class CompaniesTable extends Migration
 {
@@ -24,6 +25,8 @@ class CompaniesTable extends Migration
                 $table->charset = 'utf8';
             });
         }
+        Seeder::execute('DefaultCompanies');
+
     }
 
     public function down()
