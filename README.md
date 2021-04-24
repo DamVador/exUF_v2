@@ -60,7 +60,8 @@ And change the same informations inside docker-compose.yml using 'host.docker.in
 Go on your localhost (http://localhost:8591/ if you use docker)
 
 Currently no users can register.
-To change it, you can comment and uncomment the related part in AccountController.php in sprinkles/account/src/Controller
+
+To change it, you can comment and uncomment the related part in the pageRegister method (line 500) from AccountController.php in sprinkles/account/src/Controller
 
 Registered account to connect :
 * email : dnr94110@gmail.com  
