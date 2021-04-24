@@ -13,10 +13,10 @@ class CompaniesTable extends Migration
         if (!$this->schema->hasTable('companies')) {
             $this->schema->create('companies', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('company_name')->unique();
-                $table->string('email');
+                $table->string('company_name', 30)->unique();
+                $table->string('email')->required();
                 $table->string('logo');
-                $table->string('website');
+                $table->string('website')->required();
                 $table->timestamps();
 
                 $table->engine = 'InnoDB';
