@@ -13,10 +13,10 @@ class EmployeesTable extends Migration
         if (!$this->schema->hasTable('employees')) {
             $this->schema->create('employees', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('first_name', 30);
+                $table->string('first_name', 50);
                 $table->string('last_name', 50);
                 $table->string('email')->unique();
-                $table->string('phone_number', 15)->unique();
+                $table->string('phone_number', 30)->unique();
                 $table->timestamps();
 
                 $table->engine = 'InnoDB';
