@@ -20,7 +20,6 @@ class EmployeesController extends SimpleController
     {   
         $employees = Employee::all()->where('company_id', $args[company_name]);
         $company = Company::find($args[company_name]);
-        //Debug::debug($employees);
         return $this->ci->view->render($response, 'pages/EmployeesPages/employees.html.twig', [
             'employees' => $employees,
             'company' => $company
@@ -39,12 +38,32 @@ class EmployeesController extends SimpleController
 
     public function createEmployee(Request $request, Response $response, $args = [])
     {   
-         $first_name = $request->getParsedBody()['first_name'];
-         $last_name = $request->getParsedBody()['last_name'];
-         $email = $request->getParsedBody()['email'];
-         $phone_number = $request->getParsedBody()['phone_number'];
          $company_id = $request->getParsedBody()['company_id'];
          $id = explode(">", $company_id)[0];//company_id doesnt return just id, it returns all a string from which we can extract id
+         $first_name = $request->getParsedBody()['first_name'];
+         $first_name_length=strlen($first_name);
+         if($first_name_length<1){
+              $this->ci->alerts->addMessage('danger', "First name can't be blank", []);
+              return $response->withRedirect('/companies/'.$id . '/employees');
+         }
+         $last_name = $request->getParsedBody()['last_name'];
+         $last_name_length=strlen($last_name);
+         if($last_name_length<1){
+              $this->ci->alerts->addMessage('danger', "Last name can't be blank", []);
+              return $response->withRedirect('/companies/'.$id . '/employees');
+         }
+         $email = $request->getParsedBody()['email'];
+         $email_length=strlen($email);
+         if(strpos($email, '@') === false){
+             $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
+             return $response->withRedirect('/companies/'.$id . '/employees');
+         }
+         $phone_number = $request->getParsedBody()['phone_number'];
+         $number_length=strlen($phone_number);
+         if($number_length<6){
+              $this->ci->alerts->addMessage('danger', 'Phone number must have minimum 6 characters', []);
+              return $response->withRedirect('/companies/'.$id . '/employees');
+         }
          $employee = new Employee(['first_name'=>$first_name,'last_name'=>$last_name,'email'=>$email,'phone_number'=>$phone_number,'company_id'=>$id]);
          $employee->save();
          $this->ci->alerts->addMessage('success', 'The employee has been added', [
