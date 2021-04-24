@@ -46,11 +46,19 @@ In terminal enter the following command lines:
   docker-compose exec app sh -c "composer update"
   docker-compose exec app sh -c "php bakery bake"
 ```
-run migrations and seed:
+Run seeds:
 ```
-  php bakery migrate
   php bakery seed DefaultCompanies DefaultEmployees
 ```
-Account to connect : 
+
+To change the database informations enter this command line :
+```
+php bakery setup:db --db_driver=mysql --db_name=userfrosting --db_port=3306 --db_host=localhost --db_user=userfrosting --db_password=secret --force
+```
+And change the same informations inside docker-compose.yml using 'host.docker.internal' as host (for macos)
+
+Go on your localhost (http://localhost:8591/ if you use docker)
+
+Might be useless but in case, you can try to connect with this account
 * email : dnr94110@gmail.com  
 * password : azertyui
