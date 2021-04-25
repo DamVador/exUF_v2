@@ -37,7 +37,7 @@
                                     <a href="{{site.uri.public}}/companies/{{company.id}}/employees" class='btn btn-info m-r-1em'>Employees</a>
                                     <a href="{{site.uri.public}}/companies/{{company.id}}" class='btn btn-primary m-r-1em'>Read</a>
                                     <a href="{{site.uri.public}}/companies/{{company.id}}/edit" class='btn btn-warning m-r-1em'>Edit</a>
-                                    <a href="{{site.uri.public}}/companies/delete/{{company.id}}"  class='btn btn-danger'>Delete</a>
+                                    <a href="{{site.uri.public}}/companies/delete/{{company.id}}" onclick="return deleteFunction();" class='btn btn-danger'>Delete</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -90,8 +90,11 @@
     </div>
 
 <script>
-$('#sortTable').DataTable();
-</script>
+  function deleteFunction() {
+      if(!confirm("Are you sure to delete this ?"))
+      event.preventDefault();
+  }
+ </script>
 {% endblock %}
 {% block scripts_page %}
     <!-- Include form widgets JS -->

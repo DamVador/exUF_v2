@@ -34,7 +34,7 @@
                                 <td>
                                     <a href="{{site.uri.public}}/companies/{{company.id}}/employee/{{employee.id}}" class='btn btn-primary m-r-1em'>Read</a>
                                     <a href="{{site.uri.public}}/companies/{{company.id}}/employee/{{employee.id}}/edit" class='btn btn-warning m-r-1em'>Edit</a>
-                                    <a href="{{site.uri.public}}/companies/{{company.id}}/employee/{{employee.id}}/delete"  class='btn btn-danger'>Delete</a>
+                                    <a href="{{site.uri.public}}/companies/{{company.id}}/employee/{{employee.id}}/delete"  onclick="return deleteFunction();" class='btn btn-danger'>Delete</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -89,6 +89,12 @@
         </div>
     </div>
 
+<script>
+  function deleteFunction() {
+      if(!confirm("Are you sure to delete this ?"))
+      event.preventDefault();
+  }
+ </script>
 {% endblock %}
 {% block scripts_page %}
     <!-- Include form widgets JS -->
