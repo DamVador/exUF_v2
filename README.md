@@ -7,9 +7,10 @@ Employees -> | First name | Last name | Email | Phone number |
 
 
 ### CRUD for both 
-### Prevent users to register
+### Free access (no need to have an account)
 
 ## Few screenshots
+(might be a little bit different now)
 
 ### List of companies
 ![List of companies](screenshots/list_companies.png)
@@ -59,8 +60,8 @@ To change the database informations enter this command line and adapt the differ
 ```
 php bakery setup:db --db_driver=mysql --db_name=userfrosting --db_port=3306 --db_host=localhost --db_user=userfrosting --db_password=secret --force
 ```
-And change the same informations inside docker-compose.yml using 'host.docker.internal' as host (for macos)
+And change the same informations inside docker-compose.yml using 'host.docker.internal' as host (for macos and might work for windows but I didn't try)
 
-### If you change the database and the docker-compose.yml, don't forget to restart the docker container and to relaunch the migration command lines(php bakery migrate) to be able to use the app.
+### If you change the docker-compose.yml and/or the database, don't forget to restart the docker container and/or to relaunch the migration command line (php bakery migrate) to be able to use the app.
 
 Go on your localhost (http://localhost:8591/ if you use docker)
