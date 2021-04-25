@@ -7,10 +7,9 @@
 <div class="container">
   <div class="row ">
     <div class="col"></div>
-     <div class="jumbotron col-4 rounded bg-info" style="background-image: url({{company.logo}}); background-repeat: no-repeat; background-size: auto; background-position: right center; margin-right: 50px; width: 100; length:100;">
-        <h1 class="display-4 mx-3">{{company.company_name}}</h1>
+     <div class="jumbotron col-4 rounded bg-info">
+        <h1 class="display-4 mx-3">{{company.company_name}} <img src="{{company.logo}}" class="pull-right rounded" width="170" height="170"/></h1>
         <p class="lead">Feel free to contact this company on their mail adress : <span class="text-primary">{{company.email}}</span></p>
-        
         <p>You can also have more information about them on their website. </p>
         <p class="lead">
           <a class="btn btn-primary btn-lg" href="{{company.website}}" role="button">Visit website</a>
