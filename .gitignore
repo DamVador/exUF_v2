@@ -32,7 +32,7 @@ app/storage/*
 /app/sprinkles/*/assets/vendor/
 
 # Ignore sprinkles.json config file
-app/sprinkles.json
+# app/sprinkles.json
 
 # Ignore sample site sprinkle
 app/sprinkles/site-dev
