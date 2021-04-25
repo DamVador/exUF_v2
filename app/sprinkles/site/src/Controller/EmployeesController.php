@@ -58,21 +58,18 @@ class EmployeesController extends SimpleController
          $company_id = $request->getParsedBody()['company_id'];
          $id = explode(">", $company_id)[0];//company_id doesnt return just id, it returns all a string from which we can extract id
          $first_name = $request->getParsedBody()['first_name'];
-         $first_name_length=strlen($first_name);
-         if($first_name_length<1){
-              $this->ci->alerts->addMessage('danger', "First name can't be blank", []);
+         if (!preg_match("/^[a-zA-Z-' ]*$/",$first_name)) {
+              $this->ci->alerts->addMessage('danger', "Only letters and white space allowed for first name", []);
               return $response->withRedirect('/companies/'.$id . '/employees');
          }
          $last_name = $request->getParsedBody()['last_name'];
-         $last_name_length=strlen($last_name);
-         if($last_name_length<1){
-              $this->ci->alerts->addMessage('danger', "Last name can't be blank", []);
+         if (!preg_match("/^[a-zA-Z-' ]*$/",$last_name)) {
+            $this->ci->alerts->addMessage('danger', "Only letters and white space allowed for last name", []);
               return $response->withRedirect('/companies/'.$id . '/employees');
          }
          $email = $request->getParsedBody()['email'];
-         $email_length=strlen($email);
-         if($email_length<5){
-             $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
+         if (!filter_var($company_email, FILTER_VALIDATE_EMAIL)) {
+            $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
              return $response->withRedirect('/companies/'.$id . '/employees');
          }
          $phone_number = $request->getParsedBody()['phone_number'];
@@ -110,26 +107,24 @@ class EmployeesController extends SimpleController
     public function update(Request $request, Response $response, $args)
     {   
         $company_id = $args['company_name'];
+        $id = $args['employee_id'];
         $first_name = $request->getParsedBody()['first_name'];
-        $first_name_length=strlen($first_name);
-         if($first_name_length<1){
-              $this->ci->alerts->addMessage('danger', "First name can't be blank", []);
-              return $response->withRedirect('/companies/'.$company_id . '/employees');
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$first_name)) {
+              $this->ci->alerts->addMessage('danger', "Only letters and white space allowed for first name", []);
+              return $response->withRedirect('/companies/'.$company_id . '/employee/'.$id.'/edit');
          }
         $last_name = $request->getParsedBody()['last_name'];
-        $last_name_length=strlen($last_name);
-        if($last_name_length<1){
-             $this->ci->alerts->addMessage('danger', "Last name can't be blank", []);
-             return $response->withRedirect('/companies/'.$company_id . '/employees');
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$last_name)) {
+             $this->ci->alerts->addMessage('danger', "Only letters and white space allowed for last name", []);
+             return $response->withRedirect('/companies/'.$company_id . '/employee/'.$id.'/edit');
         }
         $email = $request->getParsedBody()['email'];
-        $email_length=strlen($email);
-         if($email_length<5){
-             $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
-             return $response->withRedirect('/companies/'.$company_id . '/employees');
+        if (!filter_var($company_email, FILTER_VALIDATE_EMAIL)) {
+            $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
+            return $response->withRedirect('/companies/'.$company_id . '/employee/'.$id .'/edit');
          }
         $phone_number = $request->getParsedBody()['phone_number'];
-        $id = $args['employee_id'];
+        
         Employee::where('id', $id)->update(['first_name' => $first_name]);
         Employee::where('id', $id)->update(['last_name' => $last_name]);
         Employee::where('id', $id)->update(['email' => $email]);
