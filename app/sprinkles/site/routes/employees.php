@@ -14,4 +14,4 @@ $app->group('/companies/{company_name}', function () {
 
     $this->get('/employee/{employee_id}', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:showEmployee');
 
-})->add('authGuard');
+});

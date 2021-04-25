@@ -13,7 +13,7 @@ use UserFrosting\Sprinkle\Core\Util\NoCache;
 global $app;
 $config = $app->getContainer()->get('config');
 
-$app->get('/', 'UserFrosting\Sprinkle\Core\Controller\CoreController:pageIndex')
+$app->get('/', 'UserFrosting\Sprinkle\Site\Controller\CompaniesController:pageList')
     ->add('checkEnvironment')
     ->setName('index');
 
