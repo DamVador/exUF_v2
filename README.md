@@ -61,4 +61,6 @@ php bakery setup:db --db_driver=mysql --db_name=userfrosting --db_port=3306 --db
 ```
 And change the same informations inside docker-compose.yml using 'host.docker.internal' as host (for macos)
 
+If you change the database and the docker-compose.yml, don't forget to restart the docker container and to relaunch the migration command lines to be able to use the app.
+
 Go on your localhost (http://localhost:8591/ if you use docker)
