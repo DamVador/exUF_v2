@@ -54,7 +54,7 @@ class EmployeesController extends SimpleController
          }
          $email = $request->getParsedBody()['email'];
          $email_length=strlen($email);
-         if(strpos($email, '@') === false){
+         if(strpos($email, '@') !== true){
              $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
              return $response->withRedirect('/companies/'.$id . '/employees');
          }
@@ -91,12 +91,27 @@ class EmployeesController extends SimpleController
     }
 
     public function update(Request $request, Response $response, $args)
-    {
-        $first_name = $request->getParsedBody()['first_name'];
-        $last_name = $request->getParsedBody()['last_name'];
-        $email = $request->getParsedBody()['email'];
-        $phone_number = $request->getParsedBody()['phone_number'];
+    {   
         $company_id = $args['company_name'];
+        $first_name = $request->getParsedBody()['first_name'];
+        $first_name_length=strlen($first_name);
+         if($first_name_length<1){
+              $this->ci->alerts->addMessage('danger', "First name can't be blank", []);
+              return $response->withRedirect('/companies/'.$company_id . '/employees');
+         }
+        $last_name = $request->getParsedBody()['last_name'];
+        $last_name_length=strlen($last_name);
+        if($last_name_length<1){
+             $this->ci->alerts->addMessage('danger', "Last name can't be blank", []);
+             return $response->withRedirect('/companies/'.$company_id . '/employees');
+        }
+        $email = $request->getParsedBody()['email'];
+        $email_length=strlen($email);
+         if(strpos($email, '@') !== true){
+             $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
+             return $response->withRedirect('/companies/'.$company_id . '/employees');
+         }
+        $phone_number = $request->getParsedBody()['phone_number'];
         $id = $args['employee_id'];
         Employee::where('id', $id)->update(['first_name' => $first_name]);
         Employee::where('id', $id)->update(['last_name' => $last_name]);
