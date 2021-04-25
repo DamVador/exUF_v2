@@ -16,6 +16,23 @@ use  \UserFrosting\Sprinkle\Core\Alert\AlertStream;
 
 class EmployeesController extends SimpleController
 {
+    public function pageFullList(Request $request, Response $response, $args)
+    {   
+        $employees = Employee::all();
+        return $this->ci->view->render($response, 'pages/EmployeesPages/all_employees.html.twig', [
+            'employees' => $employees
+        ]);
+    }
+
+    public function delete(Request $request, Response $response, $args)
+    {
+        $employee = Employee::find($args['employee_id']);
+        $employee->delete();
+        $this->ci->alerts->addMessage('success', 'The employee has been deleted', [
+        ]);
+        return $response->withRedirect('/employees');
+    }
+
     public function pageList(Request $request, Response $response, $args)
     {   
         $employees = Employee::all()->where('company_id', $args[company_name]);
@@ -54,7 +71,7 @@ class EmployeesController extends SimpleController
          }
          $email = $request->getParsedBody()['email'];
          $email_length=strlen($email);
-         if(strpos($email, '@') !== true){
+         if($email_length<5){
              $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
              return $response->withRedirect('/companies/'.$id . '/employees');
          }
@@ -107,7 +124,7 @@ class EmployeesController extends SimpleController
         }
         $email = $request->getParsedBody()['email'];
         $email_length=strlen($email);
-         if(strpos($email, '@') !== true){
+         if($email_length<5){
              $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
              return $response->withRedirect('/companies/'.$company_id . '/employees');
          }
