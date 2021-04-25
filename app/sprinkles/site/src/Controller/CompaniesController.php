@@ -40,7 +40,7 @@ class CompaniesController extends SimpleController
         }
         $company_email = $request->getParsedBody()['email'];
         $email_length=strlen($company_email);
-        if($email_length<3 && strpos($company_email, '@') !== true){
+        if($email_length<3){
              $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
              return $response->withRedirect('/companies');
         }
@@ -80,7 +80,7 @@ class CompaniesController extends SimpleController
         $company_email = $request->getParsedBody()['email'];
 
         $email_length=strlen($company_email);
-        if($email_length<3 && strpos($company_email, '@') !== true){
+        if($email_length<3){
              $this->ci->alerts->addMessage('danger', 'Wrong email format', []);
              return $response->withRedirect('/companies/'.$args['company_name'].'/edit');
         }
