@@ -54,10 +54,7 @@ class CompaniesController extends SimpleController
 
     public function deleteCompany(Request $request, Response $response, $args)
     {   
-        
         $company = Company::find($args['company_name']);
-        Debug::debug($args['company_name']);
-        Debug::debug($request->getBody());
         $company->delete();
         $this->ci->alerts->addMessage('success', 'The company has been deleted', []);
         return $response->withRedirect('/companies');
