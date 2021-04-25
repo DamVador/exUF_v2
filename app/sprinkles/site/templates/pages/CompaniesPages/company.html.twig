@@ -14,10 +14,17 @@
         <p class="lead">
           <a class="btn btn-primary btn-lg" href="{{company.website}}" role="button">Visit website</a>
           <a href="{{site.uri.public}}/companies/{{company.id}}/edit" class='btn btn-warning btn-lg m-r-1em'>Edit</a>
+          <a href="{{site.uri.public}}/companies/delete/{{company.id}}" onclick="return deleteFunction();" class='btn btn-danger btn-lg'>Delete</a>
         </p>
     </div>
     <div class="col-4"></div>
   </div>
 </div>
 
+<script>
+  function deleteFunction() {
+      if(!confirm("Are you sure to delete this ?"))
+      event.preventDefault();
+  }
+ </script>
 {% endblock %}
