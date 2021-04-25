@@ -46,23 +46,19 @@ In terminal enter the following command lines:
   docker-compose exec app sh -c "composer update"
   docker-compose exec app sh -c "php bakery bake"
 ```
-Run seeds:
+Seeds for companies and employees will run with the migrations.
+
+These command lines might be useful
 ```
-  php bakery seed DefaultCompanies DefaultEmployees
+php bakery migrate:status
+php bakery migrate:reset
+php bakery migrate
 ```
 
-To change the database informations enter this command line :
+To change the database informations enter this command line and adapt the different fields :
 ```
 php bakery setup:db --db_driver=mysql --db_name=userfrosting --db_port=3306 --db_host=localhost --db_user=userfrosting --db_password=secret --force
 ```
 And change the same informations inside docker-compose.yml using 'host.docker.internal' as host (for macos)
 
 Go on your localhost (http://localhost:8591/ if you use docker)
-
-Currently no users can register.
-
-To change it, you can comment and uncomment the related part in the pageRegister method (line 500) from AccountController.php in sprinkles/account/src/Controller
-
-Registered account to connect :
-* email : dnr94110@gmail.com  
-* password : azertyui
