@@ -15,3 +15,10 @@ $app->group('/companies/{company_name}', function () {
     $this->get('/employee/{employee_id}', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:showEmployee');
 
 });
+$app->group('/employees', function () {
+
+    $this->get('', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:pageFullList');
+
+    $this->get('/{employee_id}/delete', 'UserFrosting\Sprinkle\Site\Controller\EmployeesController:delete');
+
+});
