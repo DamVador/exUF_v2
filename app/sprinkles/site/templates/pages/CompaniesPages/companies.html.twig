@@ -38,6 +38,9 @@
                                     <a href="{{site.uri.public}}/companies/{{company.id}}" class='btn btn-primary m-r-1em'>Read</a>
                                     <a href="{{site.uri.public}}/companies/{{company.id}}/edit" class='btn btn-warning m-r-1em'>Edit</a>
                                     <a href="{{site.uri.public}}/companies/delete/{{company.id}}"  class='btn btn-danger'>Delete</a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -47,6 +50,22 @@
         </div>
     </div>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            <div class="modal-body">
+               <h4> Do you really want to delete this company ? </h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="{{site.uri.public}}/companies/delete/{{company.id}}"  class='btn btn-danger'>Delete</a>
+            </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
